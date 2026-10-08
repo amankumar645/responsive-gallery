@@ -1,0 +1,117 @@
+/* ==========================================================================
+   Base Setup & Mobile View (Mobile-First: No Media Query)
+   ========================================================================== */
+
+/* Enable smooth scrolling by default (to be disabled under prefers-reduced-motion) */
+html {
+  scroll-behavior: smooth;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  line-height: 1.6;
+}
+
+body {
+  margin: 0;
+  padding: 1.5rem;
+  background-color: #ffffff;
+  color: #1a1a1a;
+}
+
+header, footer {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Accessible hidden skip link */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* Ensure images fill figure cards properly */
+img {
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  display: block;
+}
+
+/* Requirement 5: Mobile View Grid (1 column with 10px row and column gap) */
+main {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
+
+figure {
+  margin: 0;
+  padding: 1rem;
+  background-color: #f7f7f7;
+  border: 2px solid #d1d5db;
+  overflow: hidden; /* Clips image edges to circular border-radius */
+  box-sizing: border-box;
+}
+
+figcaption {
+  padding-top: 0.75rem;
+}
+
+figure p {
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+/* ==========================================================================
+   Requirement 6: Tablet View (Triggers at min-width: 772px)
+   ========================================================================== */
+@media screen and (min-width: 772px) {
+  /* 6.1: Two-column grid */
+  main {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* 6.2: Circular shape on figures */
+  figure {
+    border-radius: 50%;
+    text-align: center;
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  figure img {
+    border-radius: 50%;
+    width: 160px;
+    height: 160px;
+  }
+
+  /* 6.3: Last figure takes up both columns */
+  figure:last-child {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ==========================================================================
+   Requirement 7: Large Screen View (Triggers at min-width: 992px)
+   ========================================================================== */
+@media screen and (min-width: 992px) {
+  /* 7.2: Remove border radius from all figures (strictly without using max-width) */
+  figure {
+    border-radius: 0;
+    padding: 1rem;
+    text-align: left;
+    display: block;
+  }
+
+  figure img {
+    border-radius: 0;
+    width: 100
